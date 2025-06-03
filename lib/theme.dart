@@ -6,7 +6,7 @@ final theme = ThemeData(
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     backgroundColor: Colors.black,
     selectedItemColor: Colors.white,
-    unselectedItemColor: Colors.grey,
+    unselectedItemColor: Colors.white,
     selectedIconTheme: IconThemeData(
       color: const Color.fromARGB(255, 255, 255, 255),
     ),
@@ -32,8 +32,8 @@ final theme = ThemeData(
     ),
   ),
   colorScheme: ColorScheme.light(
-    primary: Color.fromARGB(255, 125, 168, 123),
-    secondary: Color.fromARGB(255, 50, 103, 101),
-    tertiary: Color.fromARGB(255, 255, 255, 198),
+    primary: Color.fromARGB(255, 255, 200, 200),
+    secondary: Color.fromARGB(255, 255, 220, 220),
+    tertiary: Color.fromARGB(255, 255, 243, 226),
   ),
 );

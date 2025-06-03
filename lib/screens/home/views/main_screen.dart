@@ -192,14 +192,25 @@ class MainScreen extends StatelessWidget {
                                     Icon(myData[index]['icon']),
                                   ],
                                 ),
-                                SizedBox(width: 12,),
-                                Text(myData[index]['name'], style: theme.textTheme.labelSmall),
+                                SizedBox(width: 12),
+                                Text(
+                                  myData[index]['name'],
+                                  style: theme.textTheme.labelSmall,
+                                ),
                               ],
                             ),
-                            Column(children: [
-                                  Text(myData[index]['totalAmount'], style: theme.textTheme.labelSmall),
-                                  Text(myData[index]['date'], style: theme.textTheme.labelSmall),
-                                ],),
+                            Column(
+                              children: [
+                                Text(
+                                  myData[index]['totalAmount'],
+                                  style: theme.textTheme.labelSmall,
+                                ),
+                                Text(
+                                  myData[index]['date'],
+                                  style: theme.textTheme.labelSmall,
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),

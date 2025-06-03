@@ -1,25 +1,48 @@
 import 'dart:math';
 
+import 'package:expense_tracker_bloc_app/screens/analytics/analytics_screen.dart';
 import 'package:expense_tracker_bloc_app/screens/home/views/main_screen.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int index = 0;
+  final selectedItem = Colors.white;
+  final unselectedItem = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      // appBar: AppBar(backgroundColor: theme.appBarTheme.backgroundColor),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
         child: BottomNavigationBar(
+          onTap: (value) {
+            setState(() {
+              index = value;
+            });
+          },
           backgroundColor: theme.bottomNavigationBarTheme.backgroundColor,
           selectedIconTheme: theme.bottomNavigationBarTheme.selectedIconTheme,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-              icon: Icon(Icons.analytics),
+              icon: Icon(
+                Icons.home,
+                color: index == 0 ? selectedItem : unselectedItem,
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.analytics,
+                color: index == 1 ? selectedItem : unselectedItem,
+              ),
               label: 'Analytics',
             ),
           ],
@@ -40,13 +63,12 @@ class HomeScreen extends StatelessWidget {
                 theme.colorScheme.tertiary,
                 theme.colorScheme.secondary,
               ],
-              transform: GradientRotation(pi / 4),
             ),
           ),
-          child: Icon(Icons.add, color: Colors.black,),
+          child: Icon(Icons.add, color: Colors.black),
         ),
       ),
-      body: MainScreen(),
+      body: index == 0 ? MainScreen() : AnalyticsScreen(),
     );
   }
 }
