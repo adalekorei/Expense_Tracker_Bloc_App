@@ -47,7 +47,9 @@ class MainScreen extends StatelessWidget {
                   ],
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    
+                  },
                   icon: Icon(Icons.settings, color: Colors.white),
                 ),
               ],

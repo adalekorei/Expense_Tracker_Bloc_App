@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 final theme = ThemeData(
   scaffoldBackgroundColor: Colors.black,
-  appBarTheme: AppBarTheme(backgroundColor: Colors.black),
+  appBarTheme: AppBarTheme(
+    backgroundColor: Colors.black,
+    iconTheme: IconThemeData(color: Colors.white),
+  ),
+  iconTheme: IconThemeData(color: Colors.black),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     backgroundColor: Colors.black,
     selectedItemColor: Colors.white,
@@ -28,6 +32,11 @@ final theme = ThemeData(
     labelLarge: TextStyle(
       fontSize: 28,
       color: Colors.black,
+      fontWeight: FontWeight.bold,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 28,
+      color: Colors.white,
       fontWeight: FontWeight.bold,
     ),
   ),

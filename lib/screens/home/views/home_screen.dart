@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:expense_tracker_bloc_app/screens/add_expense/views/add_expense.dart';
 import 'package:expense_tracker_bloc_app/screens/analytics/analytics_screen.dart';
 import 'package:expense_tracker_bloc_app/screens/home/views/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => AddExpense()));
+        },
         shape: CircleBorder(),
         child: Container(
           width: 60,
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          child: Icon(Icons.add, color: Colors.black),
+          child: Icon(Icons.add, color: theme.iconTheme.color),
         ),
       ),
       body: index == 0 ? MainScreen() : AnalyticsScreen(),

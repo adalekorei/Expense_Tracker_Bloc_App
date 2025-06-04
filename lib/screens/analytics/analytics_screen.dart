@@ -19,7 +19,7 @@ class AnalyticsScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(40, 255, 255, 255),
+                color: Colors.white24,
                 borderRadius: BorderRadius.circular(18),
               ),
               child: Padding(
