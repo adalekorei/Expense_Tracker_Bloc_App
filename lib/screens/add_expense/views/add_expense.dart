@@ -1,3 +1,4 @@
+import 'package:expense_tracker_bloc_app/screens/add_expense/views/category_creation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -14,16 +15,6 @@ class _AddExpenseState extends State<AddExpense> {
   TextEditingController categoryController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   DateTime selectDate = DateTime.now();
-
-  List<String> myCategoriesIcons = [
-    'entertainment',
-    'food',
-    'home',
-    'pet',
-    'shopping',
-    'tech',
-    'travel',
-  ];
 
   @override
   void initState() {
@@ -86,157 +77,7 @@ class _AddExpenseState extends State<AddExpense> {
                   ),
                   suffixIcon: IconButton(
                     onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          bool isExpanded = false;
-                          return StatefulBuilder(
-                            builder: (context, setState) {
-                              return AlertDialog(
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                    color: theme.colorScheme.tertiary,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                title: Center(
-                                  child: Text(
-                                    'Create a category',
-                                    style: theme.textTheme.titleLarge,
-                                  ),
-                                ),
-                                backgroundColor: Colors.black,
-                                content: SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SizedBox(height: 16),
-                                      TextFormField(
-                                        textAlignVertical:
-                                            TextAlignVertical.center,
-                                        decoration: InputDecoration(
-                                          isDense: true,
-                                          filled: true,
-                                          fillColor: Colors.grey,
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              16,
-                                            ),
-                                          ),
-                                          label: Text(
-                                            'Name',
-                                            style: theme.textTheme.bodyLarge,
-                                          ),
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              16,
-                                            ),
-                                            borderSide: BorderSide.none,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 16),
-                                      TextFormField(
-                                        onTap: () {
-                                          setState(() {
-                                            isExpanded = !isExpanded;
-                                          });
-                                        },
-                                        textAlignVertical:
-                                            TextAlignVertical.center,
-                                        readOnly: true,
-                                        decoration: InputDecoration(
-                                          filled: true,
-                                          fillColor: Colors.grey,
-                                          suffixIcon: Icon(
-                                            CupertinoIcons.chevron_down,
-                                            color: theme.colorScheme.tertiary,
-                                          ),
-                                          isDense: true,
-                                          label: Text(
-                                            'Icon',
-                                            style: theme.textTheme.bodyLarge,
-                                          ),
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                isExpanded
-                                                    ? BorderRadius.vertical(
-                                                      top: Radius.circular(12),
-                                                    )
-                                                    : BorderRadius.circular(12),
-                                            borderSide: BorderSide.none,
-                                          ),
-                                        ),
-                                      ),
-                                      isExpanded
-                                          ? Container(
-                                            width:
-                                                MediaQuery.of(context).size.width,
-                                            height: 200,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey,
-                                              borderRadius: BorderRadius.vertical(
-                                                bottom: Radius.circular(12),
-                                              ),
-                                            ),
-                                            child: GridView.builder(
-                                              gridDelegate:
-                                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                                    crossAxisCount: 4,
-                                                  ),
-                                              itemCount: myCategoriesIcons.length,
-                                              itemBuilder: (context, index) {
-                                                return Container(
-                                                  width: 50,
-                                                  height: 50,
-                                                  decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                      image: AssetImage(
-                                                        'assets/${myCategoriesIcons[index]}.png',
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          )
-                                          : Container(),
-                                      SizedBox(height: 16),
-                                      TextFormField(
-                                        textAlignVertical:
-                                            TextAlignVertical.center,
-                                        readOnly: true,
-                                        decoration: InputDecoration(
-                                          isDense: true,
-                                          filled: true,
-                                          fillColor: Colors.grey,
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              16,
-                                            ),
-                                          ),
-                                          label: Text(
-                                            'Color',
-                                            style: theme.textTheme.bodyLarge,
-                                          ),
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              16,
-                                            ),
-                                            borderSide: BorderSide.none,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      );
+                      getCategoryCreation(context);
                     },
                     icon: Icon(
                       CupertinoIcons.add,
@@ -288,7 +129,9 @@ class _AddExpenseState extends State<AddExpense> {
                 width: double.infinity,
                 height: kToolbarHeight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.grey,
                     shape: RoundedRectangleBorder(
