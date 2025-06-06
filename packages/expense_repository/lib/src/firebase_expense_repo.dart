@@ -1,12 +1,9 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_repository/expense_repository.dart';
-import 'package:expense_repository/src/models/category.dart';
 
 class FirebaseExpenseRepo implements ExpenseRepository {
-  final categoryCollection = FirebaseFirestore.instance.collection(
-    'categories',
-  );
+  final categoryCollection = FirebaseFirestore.instance.collection('categories',);
   final expenseCollection = FirebaseFirestore.instance.collection('expenses');
 
   @override
@@ -34,6 +31,32 @@ class FirebaseExpenseRepo implements ExpenseRepository {
                 )
                 .toList(),
       );
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
+
+ @override
+  Future<void> createExpense(Expense expense) async {
+    try {
+      await expenseCollection
+        .doc(expense.expenseId)
+        .set(expense.toEntity().toDocument());
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Expense>> getExpenses() async {
+    try {
+      return await expenseCollection
+        .get()
+        .then((value) => value.docs.map((e) => 
+          Expense.fromEntity(ExpenseEntity.fromDocument(e.data()))
+        ).toList());
     } catch (e) {
       log(e.toString());
       rethrow;

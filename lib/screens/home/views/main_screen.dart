@@ -1,10 +1,13 @@
 import 'dart:math';
 
+import 'package:expense_repository/expense_repository.dart';
 import 'package:expense_tracker_bloc_app/data/data.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  final List<Expense> expenses;
+  const MainScreen(this.expenses, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +50,7 @@ class MainScreen extends StatelessWidget {
                   ],
                 ),
                 IconButton(
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                   icon: Icon(Icons.settings, color: Colors.white),
                 ),
               ],
@@ -164,7 +165,7 @@ class MainScreen extends StatelessWidget {
             SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
-                itemCount: 8,
+                itemCount: expenses.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 24),
@@ -187,16 +188,21 @@ class MainScreen extends StatelessWidget {
                                       width: 50,
                                       height: 50,
                                       decoration: BoxDecoration(
-                                        color: myData[index]['color'],
+                                        color: Color(
+                                          expenses[index].category.color,
+                                        ),
                                         shape: BoxShape.circle,
                                       ),
                                     ),
-                                    Icon(myData[index]['icon']),
+                                    Image.asset(
+                                      'assets/${expenses[index].category.icon}.png',
+                                      scale: 1.8,
+                                    ),
                                   ],
                                 ),
                                 SizedBox(width: 12),
                                 Text(
-                                  myData[index]['name'],
+                                  expenses[index].category.name,
                                   style: theme.textTheme.labelSmall,
                                 ),
                               ],
@@ -204,11 +210,11 @@ class MainScreen extends StatelessWidget {
                             Column(
                               children: [
                                 Text(
-                                  myData[index]['totalAmount'],
+                                  '\$ ${expenses[index].amount.toString()}.00',
                                   style: theme.textTheme.labelSmall,
                                 ),
                                 Text(
-                                  myData[index]['date'],
+                                  DateFormat('dd/MM/yyyy').format(expenses[index].date),
                                   style: theme.textTheme.labelSmall,
                                 ),
                               ],
